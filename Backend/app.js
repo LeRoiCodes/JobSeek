@@ -3,11 +3,11 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
-import userRouter from "./routes/userRoutes";
-import applicationRouter from "./routes/applicationRouter";
-import jobRouter from "./routes/jobRouter";
-import { dbConnection } from "./database/dbConnection";
-
+import userRouter from "./routes/userRoutes.js";
+import applicationRouter from "./routes/applicationRouter.js";
+import jobRouter from "./routes/jobRouter.js";
+import { dbConnection } from "./database/dbConnection.js";
+ import {errorMiddleware} from "./middlewares/error.js"
 
 const app = express()
 
@@ -39,6 +39,8 @@ app.use("api/v1/job", jobRouter)
 
 //calling function to connect to database
 dbConnection()
+
+app.use(errorMiddleware)
 
 
 export default app;
