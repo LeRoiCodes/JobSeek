@@ -53,8 +53,15 @@ export const login = catchAsyncError(async(req, res, next) => {
     if(user.role !== role){
         return next(new ErrorHandler("User with this role is not found", 400))
     }
-
+// take note of this line 
+    user.password = null
     sendToken(user, 200, res, "User logged in successfully")
 })
 
-// export const logout = c
+export const logout = catchAsyncError(async(req, res, next) =>{
+    res.status(201).cookie("token","", {httpOnly: true, expires: new Date(Date.now())
+    }).json({
+        success: true,
+        message: "user logged out successfully"
+    })
+})
