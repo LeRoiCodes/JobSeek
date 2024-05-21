@@ -34,8 +34,8 @@ app.use(fileUpload({
 
 //routers
 app.use("/api/v1/users", userRouter)
-app.use("api/v1/application", applicationRouter)
-app.use("api/v1/job", jobRouter)
+app.use("/api/v1/application", applicationRouter)
+app.use("/api/v1/jobs", jobRouter)
 
 //calling function to connect to database
 dbConnection()
