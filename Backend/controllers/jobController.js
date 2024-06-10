@@ -1,4 +1,4 @@
-import { Error } from "mongoose"
+// import { Error } from "mongoose"
 import {catchAsyncError} from "../middlewares/catchAsyncError.js"
 import ErrorHandler from "../middlewares/error.js"
 import Job from "../models/jobModel.js"
