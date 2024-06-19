@@ -1,8 +1,15 @@
 // import React from 'react'
 
+import { Link } from "react-router-dom"
+
 function Notfound() {
   return (
-    <div>Notfound</div>
+    <section className="page notfound">
+      <div className="content">
+        <img src="" alt="" />
+        <Link to={"/"}>RETURN TO HOME</Link>
+      </div>
+    </section>
   )
 }
 
