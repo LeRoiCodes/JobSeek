@@ -3,7 +3,7 @@
 import { useContext, useEffect, useState } from "react"
 import "./App.css"
 import { Context } from "./main"
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
 import Login from "./components/auth/Login"
 import Register from "./components/auth/Register"
 import Navbar from "./components/layout/Navbar"
@@ -36,7 +36,10 @@ function App() {
     fetchUser()
   }, [isAuthorized])
 
+// if(isAuthorized){
+//   return <Navigate to={"/"} />
 
+// }
 
   return (
     <Router >
