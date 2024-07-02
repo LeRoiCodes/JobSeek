@@ -17,6 +17,7 @@ function Login() {
   const {password, setPassword} = useState("")
   const {role, setRole} = useState("")
 
+  // eslint-disable-next-line no-unused-vars
   const {isAuthorized, setIsAuthorized, user, setUser} = useContext(Context);
 
   const handleLogin = async (e) => {
