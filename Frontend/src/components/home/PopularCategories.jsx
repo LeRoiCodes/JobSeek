@@ -2,7 +2,10 @@
 
 function PopularCategories() {
   return (
-    <div>PopularCategories</div>
+    <div className="categories">
+      <h3>POPULAR CATEGORIES</h3>
+      <div className="banner"></div>
+    </div>
   )
 }
 
