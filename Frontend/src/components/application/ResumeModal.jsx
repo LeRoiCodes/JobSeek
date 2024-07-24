@@ -1,8 +1,18 @@
 // import React from 'react'
 
-function ResumeModal() {
+// eslint-disable-next-line react/prop-types
+function ResumeModal({imageUrl, onClose}) {
   return (
-    <div>ResumeModal</div>
+    <>
+      <div className="resume-modal">
+        <div className="modal-content">
+          <span className="close" onClick={onClose}>
+            &times;
+          </span>
+          <img src={imageUrl} alt="resume" />
+        </div>
+      </div>
+    </>
   )
 }
 
