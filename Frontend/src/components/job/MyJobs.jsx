@@ -18,8 +18,10 @@ function MyJobs() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const {data} = await axios.get("http://localhost:5000/api/v1/job/getmyjobs", {withCredentials: true})
+        const {data} = await axios.get("http://localhost:5000/api/v1/jobs/getmyjobs", {withCredentials: true})
+        if (data.myJobs){
         setMyJobs(data.myJobs)
+        }
       } catch (error) {
         toast.error(error.response.data.message);
         setMyJobs([])
@@ -44,7 +46,7 @@ function MyJobs() {
     //Function for Editing Job
     const handleJobUpdate = async(jobId) => {
       const updateJob = myJobs.find(job => job._id === jobId)
-      await axios.put(`http://localhost:5000/api/v1/job/update/${jobId}`, updateJob, {withCredentials: true}).then(res => {
+      await axios.put(`http://localhost:5000/api/v1/jobs/update/${jobId}`, updateJob, {withCredentials: true}).then(res => {
         toast.success(res.data.message);
         setEdit(null)
       }).catch((error) => {
@@ -54,7 +56,7 @@ function MyJobs() {
 
     //function for Deleting Job
     const handleJobDelete = async (jobId) => {
-      await axios.delete(`http://localhost:5000/api/v1/job/delete/${jobId}`, {withCredentials: true}).then(res => {
+      await axios.delete(`http://localhost:5000/api/v1/jobs/delete/${jobId}`, {withCredentials: true}).then(res => {
         toast.success(res.data.message);setMyJobs(prevJobs => prevJobs.filter(job => job._id !== jobId))
       }).catch(error => {
         toast.error(error.response.data.message)
@@ -142,7 +144,7 @@ function MyJobs() {
                               </select>
                             </div>
                           </div>
-                          <div className="long_filed">
+                          <div className="long_field">
                             <div>
                               <span>Description</span>
                               <textarea rows={"5"} value={job.description} onChange={(e) => handleInputChange(job._id, "description", e.target.value)} disabled={edit !== job._id ? true: false }
@@ -177,7 +179,7 @@ function MyJobs() {
                 </div>
               </>
             ) : (
-              <p>{`You've not posted any job or maybe you deleted all of your jobs!`}</p>
+              <p className="empty">{`You've not posted any job or maybe you deleted all of your jobs!`}</p>
             )
           }
         </div>

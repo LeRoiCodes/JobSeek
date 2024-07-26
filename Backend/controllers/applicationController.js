@@ -58,8 +58,8 @@ export const postApplication = catchAsyncError(async(req, res, next) => {
     if(role === "Employer") {
         return next(new ErrorHandler("Employer is not allowed to access this resource", 400))
     }
-    if(!req.files || Object.keys(req.files).length === 0){
-        return next( new ErrorHandler("Resume file required"))
+    if(!req.files || !req.files.resume){
+        return next( new ErrorHandler("Resume file required", 400))
     }
     const {resume} = req.files
     const allowedFormats = ['image/png', "image/jpeg", "image/webp"]
@@ -68,7 +68,10 @@ export const postApplication = catchAsyncError(async(req, res, next) => {
     }
     const cloudinaryResponse = await cloudinary.uploader.upload(
         resume.tempFilePath
-    )
+    ).catch((error) => {
+        console.log(error)
+    })
+    // console.log("Cloudinary response:", cloudinaryResponse); 
     if(!cloudinaryResponse || cloudinaryResponse.error){
         console.error("Cloudinary Error", cloudinaryResponse.error || "Unknown cloudinary Error")
         return next(new ErrorHandler("failed to upload resume", 500))
@@ -83,7 +86,7 @@ export const postApplication = catchAsyncError(async(req, res, next) => {
         return next(new ErrorHandler("Job not found", 404))
     }
     const jobDetails = await Job.findById(jobId)
-    if (jobDetails) {
+    if (!jobDetails) {
         return next(new ErrorHandler("job not found", 404))
     }
 

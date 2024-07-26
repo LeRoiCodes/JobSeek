@@ -1,5 +1,5 @@
 // import React from 'react'
-import notFound from "../../../public/notfound.png"
+import notFound from "../../assets/notfound.png"
 
 import { Link } from "react-router-dom"
 

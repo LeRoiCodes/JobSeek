@@ -13,7 +13,7 @@ function Application() {
   const [coverLetter, setCoverLetter] = useState("")
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
-  const [resume, setResume] = useState("")
+  const [resume, setResume] = useState(null)
   // const [] = useState("")
 
   const {isAuthorized, user} = useContext(Context)
@@ -22,8 +22,8 @@ function Application() {
 
   //function to handle file input changes
   const handleFileChange = (e) => {
-    const resume = e.target.files(0)
-    setResume(resume)
+    const file = e.target.files[0]
+    setResume(file)
   }
 
   const {id} = useParams()
@@ -57,7 +57,7 @@ function Application() {
     }
   }
 
-  if(isAuthorized || user && user.role === "Employer") {
+  if(!isAuthorized || user && user.role === "Employer") {
     navigate("/login")
   }
 
@@ -68,9 +68,9 @@ function Application() {
           <h3>Application Form</h3>
           <form onSubmit={handleApplication}>
             <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
-            <input type="email" placeholder="Your email" value={email} onChange={(e) => setName(e.target.value)} />
-            <input type="number" placeholder="Your phone number" value={phone} onChange={(e) => setName(e.target.value)} />
-            <input type="text" placeholder="Your address" value={address} onChange={(e) => setName(e.target.value)} />
+            <input type="email" placeholder="Your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="number" placeholder="Your phone number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+            <input type="text" placeholder="Your address" value={address} onChange={(e) => setAddress(e.target.value)} />
             <textarea value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)} placeholder="Cover Letter" />
             <div>
               <label style={{textAlign: "start", display: "block", fontSize: "20px"}}>Select Resume</label>

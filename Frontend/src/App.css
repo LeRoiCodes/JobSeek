@@ -1350,3 +1350,6 @@ nav .hamburger {
     z-index: 11;
   }
 }
+.empty{
+  min-height: 100vh;
+}

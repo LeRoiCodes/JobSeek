@@ -28,8 +28,8 @@ app.use(express.urlencoded({extended:true}))
 
 //settings for uploading files
 app.use(fileUpload({
-    useTempfiles: true,
-    tempfileDir:"/temp/"
+    useTempFiles: true,
+    tempfileDir:"/tmp/"
 }))
 
 //routers

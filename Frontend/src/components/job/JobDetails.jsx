@@ -8,16 +8,20 @@ import axios from "axios"
 function JobDetails() {
 
   const {id} = useParams()
-  const {job, setJob} = useState({})
+  const [job, setJob] = useState({})
   const navigate = useNavigate()
 
   const {isAuthorized, user} = useContext(Context)
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/v1/job/:${id}`, {withCredentials:true}).then(res =>{
+    axios.get(`http://localhost:5000/api/v1/jobs/${id}`, {withCredentials:true}).then(res =>{
+      if (Object.keys(res.data.job).length > 0){
+      
       setJob(res.data.job)
+      }
+    
     }).catch((err) => {
-      console.log(err.response.data.message)
+      console.log(err)
     })
   }, [])
 
@@ -30,7 +34,8 @@ function JobDetails() {
       <div className="jobDetail page">
         <div className="container">
           <h3>Job Details</h3>
-          <div className="banner">
+          {job && Object.keys(job).length > 0 ? (
+            <div className="banner">
             <p>Title: <span>{job.title}</span></p>
             <p>Category: <span>{job.category}</span></p>
             <p>Country: <span>{job.country}</span></p>
@@ -45,6 +50,9 @@ function JobDetails() {
               
             </p>
           </div>
+          ): (
+            <h3 className="empty">Job not found</h3>
+          )}
         </div>
       </div>
     </>

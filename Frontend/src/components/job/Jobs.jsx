@@ -13,8 +13,11 @@ const navigate = useNavigate()
 
 useEffect(() => {
   try {
-    axios.get("http://localhost:5000/api/v1/job/getall", {withCredentials: true}).then((res) => {
+    axios.get("http://localhost:5000/api/v1/jobs/getall", {withCredentials: true}).then((res) => {
+      if(res.data.jobs){
       setJobs(res.data)
+    }
+      // console.log(res.data)
     })
   } catch (error){
     console.log(error)

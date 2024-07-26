@@ -21,19 +21,26 @@ function MyApplication() {
 
   useEffect(() => {
     try {
-      if(user && user.role === "Employer") {
+      // console.log(user)
+      if(user.role === "Employer") {
         axios.get("http://localhost:5000/api/v1/application/employer/getall", {withCredentials: true}).then((res) => {
-          setApplication(res.data.applications)
+          if(res.data.application){
+          setApplication(res.data.application)
+          }
+          // console.log(res)
         })
       } else {
         axios.get("http://localhost:5000/api/v1/application/jobseeker/getall", {withCredentials: true}).then((res) => {
-          setApplication(res.data.applications)
+          if(res.data.application){
+          setApplication(res.data.application)
+          }
+          console.log(res.data)
         })
       }
     } catch (error) {
       toast.error(error.response.data.message)
     }
-  }, [isAuthorized])
+  }, [])
 
   if(!isAuthorized) {
     navigate("/login")
@@ -71,8 +78,8 @@ function MyApplication() {
               <h1>My Applications</h1>
               {application.length <= 0 ? (
                 <>
-                  {" "}
-                  <h4>No Applications Found</h4>{" "}
+                  
+                  <h4 className="empty">No Applications Found</h4>
                 </>
               ): (
               
@@ -89,7 +96,7 @@ function MyApplication() {
               {application.length <= 0 ? (
                 <>
                   
-                  <h4>No Applications Found</h4>
+                  <h4 className="empty">No Applications Found</h4>
                 </>
               ): (
               

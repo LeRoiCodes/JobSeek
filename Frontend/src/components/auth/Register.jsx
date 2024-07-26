@@ -8,16 +8,16 @@ import { Link, Navigate } from "react-router-dom"
 import { FaPencilAlt, FaRegUser } from "react-icons/fa"
 import { MdOutlineMailOutline } from "react-icons/md";
 import {FaPhoneFlip} from "react-icons/fa6"
-import logo from "../../../public/JobZeelogo.png"
+import logo from "../../assets/JobZeelogo.png"
 import { RiLock2Fill } from "react-icons/ri"
 
 function Register() {
 
-  const {email,setEmail} = useState("")
-  const {password, setPassword} = useState("")
-  const {phone, setPhone} = useState("")
-  const {name, setName} = useState("")
-  const {role, setRole} = useState("")
+  const [email,setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [phone, setPhone] = useState("")
+  const [name, setName] = useState("")
+  const [role, setRole] = useState("")
 
   // eslint-disable-next-line no-unused-vars
   const {isAuthorized, setIsAuthorized, user, setUser} = useContext(Context);
@@ -25,7 +25,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try{
-      const {data} = await axios.post("http://localhost:5000/api/v1/user/register",{
+      const {data} = await axios.post("http://localhost:5000/api/v1/users/register",{
         name, email, password, phone, role
       }, {withCredentials: true, headers: {
         "Content-Type": "application/json",

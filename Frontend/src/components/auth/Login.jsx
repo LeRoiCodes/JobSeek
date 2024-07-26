@@ -8,14 +8,14 @@ import { Link, Navigate } from "react-router-dom"
 import {  FaRegUser } from "react-icons/fa"
 import { MdOutlineMailOutline } from "react-icons/md";
 
-import logo from "../../../public/JobZeelogo.png"
+import logo from "../../assets/JobZeelogo.png"
 import { RiLock2Fill } from "react-icons/ri"
 
 function Login() {
 
-  const {email,setEmail} = useState("")
-  const {password, setPassword} = useState("")
-  const {role, setRole} = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [role, setRole] = useState("")
 
   // eslint-disable-next-line no-unused-vars
   const {isAuthorized, setIsAuthorized, user, setUser} = useContext(Context);
@@ -23,7 +23,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try{
-      const {data} = await axios.post("http://localhost:5000/api/v1/user/login",{
+      const {data} = await axios.post("http://localhost:5000/api/v1/users/login",{
         email, password, role
       }, {withCredentials: true, headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ function Login() {
             <div className="inputTag">
               <label>Login As</label>
               <div>
-                <select value={role} onChange={(e) => setRole(e.target.value)}>
+                <select value={role} onChange={e => setRole(e.target.value)}>
                   <option value="">Select Role</option>
                   <option value="Employer">Employer</option>
                   <option value="Job Seeker">Job Seeker</option>
@@ -68,7 +68,7 @@ function Login() {
             <div className="inputTag">
               <label>Email</label>
               <div>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Johndoe@gmail.com" />
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Johndoe@gmail.com" />
                 <MdOutlineMailOutline />
               </div>
             </div>
@@ -76,11 +76,11 @@ function Login() {
             <div className="inputTag">
               <label>Password</label>
               <div>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
                 <RiLock2Fill />
               </div>
             </div>
-            <button onClick={handleLogin} type="submit">Register</button>
+            <button onClick={handleLogin} type="submit">Login</button>
             <Link to={"/register"}>Register Now</Link>
           </form>
         </div>

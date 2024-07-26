@@ -1,6 +1,6 @@
 import express from "express";
-import { employerGetAllApplication, jobSeekerDeleteApplication, jobSeekerGetAllApplication, postApplication } from "../controllers/applicationController";
-import { isAuthorized } from "../middlewares/auth";
+import { employerGetAllApplication, jobSeekerDeleteApplication, jobSeekerGetAllApplication, postApplication } from "../controllers/applicationController.js";
+import { isAuthorized } from "../middlewares/auth.js";
 
 
 
