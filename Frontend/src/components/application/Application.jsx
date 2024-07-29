@@ -41,7 +41,7 @@ function Application() {
     formData.append("jobId", id)
 
     try {
-      const {data} = await axios.post("http://localhost:5000/api/v1/application/post", formData, {withCredentials: true, headers:{"Content-Type": "multipart/form-data"}
+      const {data} = await axios.post("https://jobseek-nsy7.onrender.com/api/v1/application/post", formData, {withCredentials: true, headers:{"Content-Type": "multipart/form-data"}
       }) 
       setName("")
       setEmail("")

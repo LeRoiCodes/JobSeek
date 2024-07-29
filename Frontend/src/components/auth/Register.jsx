@@ -25,7 +25,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try{
-      const {data} = await axios.post("http://localhost:5000/api/v1/users/register",{
+      const {data} = await axios.post("https://jobseek-nsy7.onrender.com/api/v1/users/register",{
         name, email, password, phone, role
       }, {withCredentials: true, headers: {
         "Content-Type": "application/json",

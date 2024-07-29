@@ -16,7 +16,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/v1/users/logout", {withCredentials: true});
+      const response = await axios.get("https://jobseek-nsy7.onrender.com/api/v1/users/logout", {withCredentials: true});
       toast.success(response.data.message)
       setIsAuthorized(false)
       navigateTo("/login")

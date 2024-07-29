@@ -23,14 +23,14 @@ function MyApplication() {
     try {
       // console.log(user)
       if(user.role === "Employer") {
-        axios.get("http://localhost:5000/api/v1/application/employer/getall", {withCredentials: true}).then((res) => {
+        axios.get("https://jobseek-nsy7.onrender.com/api/v1/application/employer/getall", {withCredentials: true}).then((res) => {
           if(res.data.application){
           setApplication(res.data.application)
           }
           // console.log(res)
         })
       } else {
-        axios.get("http://localhost:5000/api/v1/application/jobseeker/getall", {withCredentials: true}).then((res) => {
+        axios.get("https://jobseek-nsy7.onrender.com/api/v1/application/jobseeker/getall", {withCredentials: true}).then((res) => {
           if(res.data.application){
           setApplication(res.data.application)
           }
@@ -48,7 +48,7 @@ function MyApplication() {
 
   const deleteApplication = async (id) => {
     try {
-      await axios.get(`http://localhost:5000/api/v1/application/delete/${id}`, {withCredentials: true}).then((res) => {
+      await axios.get(`https://jobseek-nsy7.onrender.com/api/v1/application/delete/${id}`, {withCredentials: true}).then((res) => {
         toast.success(res.data.message)
         setApplication((prevAppl) => {
           prevAppl.filter((appl) => appl._id !== id)

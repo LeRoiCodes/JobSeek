@@ -13,7 +13,7 @@ const navigate = useNavigate()
 
 useEffect(() => {
   try {
-    axios.get("http://localhost:5000/api/v1/jobs/getall", {withCredentials: true}).then((res) => {
+    axios.get("https://jobseek-nsy7.onrender.com/api/v1/jobs/getall", {withCredentials: true}).then((res) => {
       if(res.data.jobs){
       setJobs(res.data)
     }

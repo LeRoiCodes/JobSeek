@@ -34,7 +34,7 @@ function PostJob() {
       setSalaryTo("")
       setFixedSalary("")
     }
-    await axios.post("http://localhost:5000/api/v1/jobs/post", fixedSalary.length >= 4 ? {title, category, country, city, location, fixedSalary, description} : {title, category, country, city, location, salaryFrom, salaryTo, description}, {withCredentials: true, headers:{
+    await axios.post("https://jobseek-nsy7.onrender.com/api/v1/jobs/post", fixedSalary.length >= 4 ? {title, category, country, city, location, fixedSalary, description} : {title, category, country, city, location, salaryFrom, salaryTo, description}, {withCredentials: true, headers:{
       "Content-Type": "Application/json",
     }}).then (
       (res) => {toast.success(res.data.message)
