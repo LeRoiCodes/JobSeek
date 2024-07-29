@@ -36,6 +36,11 @@ app.use(fileUpload({
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/application", applicationRouter)
 app.use("/api/v1/jobs", jobRouter)
+app.get("/", (req, res) => {
+    res.status(200).json({
+        message: "welcome to jobseek api"
+    })
+})
 
 //calling function to connect to database
 dbConnection()
