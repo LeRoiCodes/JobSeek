@@ -5,6 +5,7 @@ import { Context } from "../../main"
 import axios from "axios"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
+import {api} from "../utils/constant.js"
 
 function PostJob() {
 
@@ -34,7 +35,7 @@ function PostJob() {
       setSalaryTo("")
       setFixedSalary("")
     }
-    await axios.post("https://jobseek-nsy7.onrender.com/api/v1/jobs/post", fixedSalary.length >= 4 ? {title, category, country, city, location, fixedSalary, description} : {title, category, country, city, location, salaryFrom, salaryTo, description}, {withCredentials: true, headers:{
+    await axios.post(`${api}/jobs/post`, fixedSalary.length >= 4 ? {title, category, country, city, location, fixedSalary, description} : {title, category, country, city, location, salaryFrom, salaryTo, description}, {withCredentials: true, headers:{
       "Content-Type": "Application/json",
     }}).then (
       (res) => {toast.success(res.data.message)

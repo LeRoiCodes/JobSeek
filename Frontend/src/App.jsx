@@ -18,15 +18,17 @@ import Application from "./components/application/Application"
 import MyApplication from "./components/application/MyApplication"
 import NotFound from "./components/notFound/Notfound"
 import {Toaster} from "react-hot-toast"
+import {api} from "./components/utils/constant.js"
 
 function App() {
 
   const {isAuthorized, setIsAuthorized, setUser} = useContext(Context)
 
+
   useEffect(() => {
     const fetchUser = async() => {
       try {
-        const response = await axios.get("https://jobseek-nsy7.onrender.com/api/v1/users/getuser", {withCredentials: true});
+        const response = await axios.get(`${api}/users/getuser`, {withCredentials: true});
         setUser(response.data.user)
         setIsAuthorized(true)
       } catch (error) {

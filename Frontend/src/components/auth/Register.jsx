@@ -10,6 +10,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import {FaPhoneFlip} from "react-icons/fa6"
 import logo from "../../assets/JobZeelogo.png"
 import { RiLock2Fill } from "react-icons/ri"
+import {api} from "../utils/constant.js"
 
 function Register() {
 
@@ -25,7 +26,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try{
-      const {data} = await axios.post("https://jobseek-nsy7.onrender.com/api/v1/users/register",{
+      const {data} = await axios.post(`${api}/users/register`,{
         name, email, password, phone, role
       }, {withCredentials: true, headers: {
         "Content-Type": "application/json",

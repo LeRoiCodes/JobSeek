@@ -10,6 +10,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 
 import logo from "../../assets/JobZeelogo.png"
 import { RiLock2Fill } from "react-icons/ri"
+import {api} from "../utils/constant.js"
 
 function Login() {
 
@@ -23,7 +24,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try{
-      const {data} = await axios.post("https://jobseek-nsy7.onrender.com/api/v1/users/login",{
+      const {data} = await axios.post(`${api}/users/login`,{
         email, password, role
       }, {withCredentials: true, headers: {
         "Content-Type": "application/json",

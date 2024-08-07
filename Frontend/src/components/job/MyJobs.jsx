@@ -5,6 +5,7 @@ import { FaCheck } from "react-icons/fa6"
 import { RxCross2 } from "react-icons/rx"
 import { Context } from "../../main"
 import { useNavigate } from "react-router-dom"
+import {api} from "../utils/constant.js"
 
 
 function MyJobs() {
@@ -13,12 +14,14 @@ function MyJobs() {
   const [edit, setEdit] = useState(null)
   const {isAuthorized, user} = useContext(Context)
 
+ 
+
   const navigate = useNavigate()
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const {data} = await axios.get("https://jobseek-nsy7.onrender.com/api/v1/jobs/getmyjobs", {withCredentials: true})
+        const {data} = await axios.get(`${api}/jobs/getmyjobs`, {withCredentials: true})
         if (data.myJobs){
         setMyJobs(data.myJobs)
         }
@@ -46,7 +49,7 @@ function MyJobs() {
     //Function for Editing Job
     const handleJobUpdate = async(jobId) => {
       const updateJob = myJobs.find(job => job._id === jobId)
-      await axios.put(`https://jobseek-nsy7.onrender.com/api/v1/jobs/update/${jobId}`, updateJob, {withCredentials: true}).then(res => {
+      await axios.put(`${api}/jobs/update/${jobId}`, updateJob, {withCredentials: true}).then(res => {
         toast.success(res.data.message);
         setEdit(null)
       }).catch((error) => {
@@ -56,7 +59,7 @@ function MyJobs() {
 
     //function for Deleting Job
     const handleJobDelete = async (jobId) => {
-      await axios.delete(`https://jobseek-nsy7.onrender.com/api/v1/jobs/delete/${jobId}`, {withCredentials: true}).then(res => {
+      await axios.delete(`${api}/jobs/delete/${jobId}`, {withCredentials: true}).then(res => {
         toast.success(res.data.message);setMyJobs(prevJobs => prevJobs.filter(job => job._id !== jobId))
       }).catch(error => {
         toast.error(error.response.data.message)

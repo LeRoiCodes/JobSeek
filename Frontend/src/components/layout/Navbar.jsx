@@ -7,8 +7,11 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import logo from "../../assets/JobZee-logos__white.png"
 import {GiHamburgerMenu} from "react-icons/gi"
+import {api} from "../utils/constant.js"
 
 function Navbar() {
+
+
 
   const [show, setShow] = useState(false);
   const {isAuthorized, setIsAuthorized, user} = useContext(Context)
@@ -16,7 +19,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("https://jobseek-nsy7.onrender.com/api/v1/users/logout", {withCredentials: true});
+      const response = await axios.get(`${api}/users/logout`, {withCredentials: true});
       toast.success(response.data.message)
       setIsAuthorized(false)
       navigateTo("/login")

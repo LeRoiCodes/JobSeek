@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { Context } from "../../main"
 import axios from "axios"
+import {api} from "../utils/constant.js"
 
 function JobDetails() {
 
@@ -13,8 +14,9 @@ function JobDetails() {
 
   const {isAuthorized, user} = useContext(Context)
 
+
   useEffect(() => {
-    axios.get(`https://jobseek-nsy7.onrender.com/api/v1/jobs/${id}`, {withCredentials:true}).then(res =>{
+    axios.get(`${api}/jobs/${id}`, {withCredentials:true}).then(res =>{
       if (Object.keys(res.data.job).length > 0){
       
       setJob(res.data.job)

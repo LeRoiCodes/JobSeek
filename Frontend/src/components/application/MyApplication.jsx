@@ -7,6 +7,7 @@ import { useNavigate, } from "react-router-dom"
 import axios from "axios"
 import toast from "react-hot-toast"
 import ResumeModal from "./ResumeModal.jsx"
+import {api} from "../utils/constant.js"
 
 function MyApplication() {
 
@@ -23,14 +24,14 @@ function MyApplication() {
     try {
       // console.log(user)
       if(user.role === "Employer") {
-        axios.get("https://jobseek-nsy7.onrender.com/api/v1/application/employer/getall", {withCredentials: true}).then((res) => {
+        axios.get(`${api}/application/employer/getall`, {withCredentials: true}).then((res) => {
           if(res.data.application){
           setApplication(res.data.application)
           }
           // console.log(res)
         })
       } else {
-        axios.get("https://jobseek-nsy7.onrender.com/api/v1/application/jobseeker/getall", {withCredentials: true}).then((res) => {
+        axios.get(`${api}/application/jobseeker/getall`, {withCredentials: true}).then((res) => {
           if(res.data.application){
           setApplication(res.data.application)
           }
@@ -48,7 +49,7 @@ function MyApplication() {
 
   const deleteApplication = async (id) => {
     try {
-      await axios.get(`https://jobseek-nsy7.onrender.com/api/v1/application/delete/${id}`, {withCredentials: true}).then((res) => {
+      await axios.get(`${api}/application/delete/${id}`, {withCredentials: true}).then((res) => {
         toast.success(res.data.message)
         setApplication((prevAppl) => {
           prevAppl.filter((appl) => appl._id !== id)
